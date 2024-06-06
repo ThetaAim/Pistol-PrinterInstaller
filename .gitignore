@@ -1,0 +1,12 @@
+# Ignore virtual environment
+venv/
+
+# Ignore other files and directories
+.DS_Store
+.idea/
+build/
+dist/
+*.pyc
+__pycache__/
+*.pkg
+*.app
