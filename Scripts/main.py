@@ -1,44 +1,41 @@
 import os
+import sys
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
 from threading import Thread
-from Installer.tk_installer import install_pkgs
-from Printers.Create_printer_with_settings import create_printer
-from Presets.Copy_Prst import copy_files
-
-
-# import os
-# import tkinter as tk
-# from tkinter.scrolledtext import ScrolledText
-# from threading import Thread
-# from Scripts.Installer.tk_installer import install_pkgs
-# from Scripts.Printers.Create_printer_with_settings import create_printer
-# from Scripts.Presets.Copy_Prst import copy_files
+from Scripts.Installer.tk_installer import install_pkgs
+from Scripts.Printers.Create_printer_with_settings import create_printer
+from Scripts.Presets.Copy_Prst import copy_files
 
 def disable_event():
     pass
-
 
 def run_installation(text_widget, install_button):
     # Disable the install button
     install_button.config(state=tk.DISABLED)
 
-    relative_path = '../pkgs/Black/Black.pkg'
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    absolute_path = os.path.abspath(os.path.join(current_dir, relative_path))
+    # Determine the base directory
+    if hasattr(sys, '_MEIPASS'):
+        base_dir = sys._MEIPASS
+    else:
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Convert relative paths to absolute paths
+    def to_absolute(relative_path):
+        return os.path.abspath(os.path.join(base_dir, relative_path))
+
     # A. Run Package Installer Setup files
     packages = [
-        ('/Users/user/Desktop/Pistol/pkgs/Ysoft/Ysoft.pkg', 'Ysoft'),
-        ('/Users/user/Desktop/Pistol/pkgs/Fiery/fiery.pkg', 'Fiery'),
-        ('/Users/user/Desktop/Pistol/pkgs/Color/color.pkg', 'Color'),
-        ('/Users/user/Desktop/Pistol/pkgs/Uniqe/unique.pkg', 'Unique'),
-        ('/Users/user/Desktop/Pistol/pkgs/Black/Black.pkg', 'Black')
+        (to_absolute('Resources/pkgs/Ysoft/Ysoft.pkg'), 'Ysoft'),
+        (to_absolute('Resources/pkgs/Fiery/fiery.pkg'), 'Fiery'),
+        (to_absolute('Resources/pkgs/Color/color.pkg'), 'Color'),
+        (to_absolute('Resources/pkgs/Uniqe/unique.pkg'), 'Unique'),
+        (to_absolute('Resources/pkgs/Black/Black.pkg'), 'Black')
     ]
 
     install_pkgs(packages, text_widget)
 
     # B. Create Printers and set Settings
-
     text_widget.insert(tk.END, "Setting up printers...\n")
     create_printer("Fiery", "172.16.100.100", "ColB",
                    "/Library/Printers//PPDs/Contents/Resources/en.lproj/Pro C7200Sseries E-35A PS 1.0", "MainFarm",
@@ -59,16 +56,14 @@ def run_installation(text_widget, install_button):
 
     # D. Copy/Set Presets
     username = os.popen('whoami').read().strip()
-    copy_files("../pkgs/Presets", f"/Users/{username}/Library/Preferences")
+    copy_files(to_absolute("Resources/pkgs/Presets"), f"/Users/{username}/Library/Preferences")
     text_widget.insert(tk.END, "Copied presets successfully.\n")
 
     # Change the button to quit
     install_button.config(text="Quit", state=tk.NORMAL, command=main_window.quit)
 
-
 def start_installation(text_widget, install_button):
     Thread(target=run_installation, args=(text_widget, install_button)).start()
-
 
 def main():
     global main_window
@@ -85,7 +80,6 @@ def main():
     install_button.pack(pady=10)
 
     main_window.mainloop()
-
 
 if __name__ == "__main__":
     main()
