@@ -1,0 +1,21 @@
+Intel:
+
+arch -x86_64 /usr/local/bin/python3 -m venv venv_intel
+source venv_intel/bin/activate
+pip install pyinstaller
+arch -x86_64 pyinstaller --onefile --windowed Scripts/main.py
+deactivate
+
+
+ARM:
+
+python3 -m venv venv_arm
+source venv_arm/bin/activate
+pip install pyinstaller
+pyinstaller --onefile --windowed --distpath dist_arm Scripts/main.py
+deactivate
+
+
+Combine:
+
+lipo -create -output dist/main_universal dist/main dist/main
