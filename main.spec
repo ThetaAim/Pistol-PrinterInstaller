@@ -4,7 +4,7 @@ import os
 block_cipher = None
 
 a = Analysis(
-    ['Scripts/main.py'],
+    ['main.py'],
     pathex=['/Users/administrator/Desktop/Pistol'],
     binaries=[],
     datas=[

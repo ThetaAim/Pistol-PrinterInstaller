@@ -2,6 +2,7 @@ import os
 import shutil
 import tkinter as tk
 
+import threading
 
 def check_file_exists(pkg_path):
     """Check if the given file path exists."""
@@ -23,8 +24,10 @@ def install_pkgs(pkgs, text_widget):
                 pkg_names.append(file_name)
             except Exception as e:
                 text_widget.insert(tk.END, f"Failed to copy {pkg_path} to {tmp_pkg_path}: {e}\n")
+
         else:
             text_widget.insert(tk.END, f"Package path {pkg_path} does not exist.\n")
+
 
     if not tmp_pkg_paths:
         text_widget.insert(tk.END, "No packages to install.\n")
@@ -38,12 +41,14 @@ def install_pkgs(pkgs, text_widget):
 
         full_applescript = f"osascript -e '{applescript_commands}'"
         result = os.system(full_applescript)
+        # threading.Thread(target=os.system, args=(full_applescript,)).start() ## TEST it
 
         if result == 0:
             for file_name in pkg_names:
                 text_widget.insert(tk.END, f"Installed {file_name} package successfully.\n")
         else:
             text_widget.insert(tk.END, "Installation failed.\n")
+            exit()
     except Exception as e:
         text_widget.insert(tk.END, f"Installation aborted: {e}\n")
     finally:
