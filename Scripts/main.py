@@ -16,7 +16,7 @@ def run_installation(text_widget, install_button):
 
     # Determine the base directory
     if hasattr(sys, '_MEIPASS'):
-        base_dir = sys._MEIPASS
+        base_dir = os.path.join(sys._MEIPASS, 'Resources')
     else:
         base_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -26,11 +26,22 @@ def run_installation(text_widget, install_button):
 
     # A. Run Package Installer Setup files
     packages = [
-        (to_absolute('Resources/pkgs/Ysoft/Ysoft.pkg'), 'Ysoft'),
-        (to_absolute('Resources/pkgs/Fiery/fiery.pkg'), 'Fiery'),
-        (to_absolute('Resources/pkgs/Color/color.pkg'), 'Color'),
-        (to_absolute('Resources/pkgs/Uniqe/unique.pkg'), 'Unique'),
-        (to_absolute('Resources/pkgs/Black/Black.pkg'), 'Black')
+        (to_absolute('pkgs/Ysoft/Ysoft.pkg'), 'Ysoft'),
+        (to_absolute('pkgs/Fiery/fiery.pkg'), 'Fiery'),
+        (to_absolute('pkgs/Color/color.pkg'), 'Color'),
+        (to_absolute('pkgs/Uniqe/unique.pkg'), 'Unique'),
+        (to_absolute('pkgs/Black/Black.pkg'), 'Black')
+    ]
+
+    printers = [
+        ("Fiery", "172.16.100.100", "ColB",
+                   "/Library/Printers/PPDs/Contents/Resources/en.lproj/Pro C7200Sseries E-35A PS 1.0", "MainFarm",
+         {
+             "EFPaperDeckOpt" : "Option2",
+             "EFFinisher" : "Finisher7",
+             "EFPerfectBinder" : True
+        }
+         )
     ]
 
     install_pkgs(packages, text_widget)
@@ -38,7 +49,7 @@ def run_installation(text_widget, install_button):
     # B. Create Printers and set Settings
     text_widget.insert(tk.END, "Setting up printers...\n")
     create_printer("Fiery", "172.16.100.100", "ColB",
-                   "/Library/Printers//PPDs/Contents/Resources/en.lproj/Pro C7200Sseries E-35A PS 1.0", "MainFarm",
+                   "/Library/Printers/PPDs/Contents/Resources/en.lproj/Pro C7200Sseries E-35A PS 1.0", "MainFarm",
                    EFPaperDeckOpt="Option2", EFFinisher="Finisher7", EFPerfectBinder=True)
     text_widget.insert(tk.END, "Printer Fiery setup completed.\n")
 
@@ -56,7 +67,7 @@ def run_installation(text_widget, install_button):
 
     # D. Copy/Set Presets
     username = os.popen('whoami').read().strip()
-    copy_files(to_absolute("Resources/pkgs/Presets"), f"/Users/{username}/Library/Preferences")
+    copy_files(to_absolute("pkgs/Presets"), f"/Users/{username}/Library/Preferences")
     text_widget.insert(tk.END, "Copied presets successfully.\n")
 
     # Change the button to quit

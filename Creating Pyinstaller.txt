@@ -1,19 +1,38 @@
 Intel:
 
+# for one file
 arch -x86_64 /usr/local/bin/python3 -m venv venv_intel
 source venv_intel/bin/activate
-pip install pyinstaller
-arch -x86_64 pyinstaller --onefile --windowed Scripts/main.py
-deactivate
+arch -x86_64 pyinstaller main.spec --distpath dist_intel
+
+# for removing security
+xattr -cr main.app
+
+# disable gatekeeper Enable "Allow apps from anywhere":
+sudo spctl --master-disable
+
+# enable
+sudo spctl --master-enable
 
 
-ARM:
+Combine:
+ARM to combine :
 
 python3 -m venv venv_arm
 source venv_arm/bin/activate
 pip install pyinstaller
-pyinstaller --onefile --windowed --distpath dist_arm Scripts/main.py
+pyinstaller --onefile --windowed --add-data "pkgs:Resources/pkgs" --distpath dist_arm Scripts/main.py
 deactivate
+
+
+# Intel to combine
+
+python3 -m venv venv_arm
+source venv_arm/bin/activate
+pip install pyinstaller
+pyinstaller --onefile --windowed --add-data "pkgs:Resources/pkgs" --distpath dist_arm Scripts/main.py
+deactivate
+
 
 
 Combine:

@@ -7,23 +7,23 @@ APP = ['Scripts/main.py']
 # Define your data files
 DATA_FILES = [
     ('Resources/pkgs/Black', [
-        os.path.join('pkgs/Black', 'Black.pkg')
+        os.path.join('../../pkgs/Black', 'Black.pkg')
     ]),
     ('Resources/pkgs/Color', [
-        os.path.join('pkgs/Color', 'color.pkg')
+        os.path.join('../../pkgs/Color', 'color.pkg')
     ]),
     ('Resources/pkgs/Fiery', [
-        os.path.join('pkgs/Fiery', 'fiery.pkg')
+        os.path.join('../../pkgs/Fiery', 'fiery.pkg')
     ]),
     ('Resources/pkgs/Uniqe', [
-        os.path.join('pkgs/Uniqe', 'unique.pkg')
+        os.path.join('../../pkgs/Uniqe', 'unique.pkg')
     ]),
     ('Resources/pkgs/Ysoft', [
-        os.path.join('pkgs/Ysoft', 'Ysoft.pkg')
+        os.path.join('../../pkgs/Ysoft', 'Ysoft.pkg')
     ]),
     # Include all files in the Presets directory
     ('Resources/pkgs/Presets', [
-        os.path.join('pkgs/Presets', filename) for filename in os.listdir('pkgs/Presets')
+        os.path.join('../../pkgs/Presets', filename) for filename in os.listdir('../../pkgs/Presets')
     ])
 ]
 
