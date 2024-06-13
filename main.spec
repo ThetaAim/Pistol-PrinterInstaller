@@ -59,6 +59,6 @@ coll = COLLECT(
 app = BUNDLE(
     coll,
     name='main.app',
-    icon=None,
+    icon='Icons/Icons.icns',
     bundle_identifier='com.yourcompany.main',
 )
