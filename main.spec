@@ -9,7 +9,10 @@ a = Analysis(
     binaries=[],
     datas=[
         ('pkgs', 'Resources/pkgs'),  # Include the pkgs directory
-        ('Scripts/Presets', 'Resources/Presets'),  # Include the Presets directory
+        ('Scripts/Installer', 'Installer'),  # Include the Installer directory
+        ('Scripts/Presets', 'Presets'),  # Include the Presets directory
+        ('Scripts/Printers', 'Printers'),  # Include the Printers directory
+        ('Scripts/Uninstaller', 'Uninstaller'),  # Include the Uninstaller directory
     ],
     hiddenimports=[],
     hookspath=[],
