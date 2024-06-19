@@ -13,6 +13,8 @@ a = Analysis(
         ('Scripts/Presets', 'Presets'),  # Include the Presets directory
         ('Scripts/Printers', 'Printers'),  # Include the Printers directory
         ('Scripts/Uninstaller', 'Uninstaller'),  # Include the Uninstaller directory
+        ('Data', 'Data'),  # Include the Uninstaller directory
+        ('Tools', 'Tools'),  # Include the Uninstaller directory
     ],
     hiddenimports=[],
     hookspath=[],

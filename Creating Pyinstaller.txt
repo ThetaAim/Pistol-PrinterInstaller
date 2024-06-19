@@ -14,6 +14,10 @@ sudo spctl --master-disable
 # enable
 sudo spctl --master-enable
 
+#For ARM silicon apple:
+pyinstaller main.spec --distpath dist_arm 
+
+
 #for uninstaller
 
 arch -x86_64 /usr/local/bin/python3 -m venv venv_intel                                                                                                                                                                                                              ─╯
