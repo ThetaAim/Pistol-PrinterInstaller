@@ -63,5 +63,3 @@ def copy_files(source_folder, destination_folder):
     finally:
         # Clean up the temporary folder
         shutil.rmtree(temp_folder, ignore_errors=True)
-
-

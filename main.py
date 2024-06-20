@@ -6,16 +6,21 @@ from threading import Thread
 from Scripts.Installer.tk_installer import install_pkgs
 from Scripts.Printers.Create_printer_with_settings import create_printer
 from Scripts.Presets.Copy_Prst import copy_files
-from Data.Data import packages, printer_configs, to_absolute
+from Data.Data import packages, printer_configs
+from Tools.tools import to_absolute
+
+
+def change_button_to_quit(install_button):
+    install_button.config(text="Quit", state=tk.NORMAL, command=main_window.quit)
 
 
 def run_installation(text_widget, install_button):
-
     # Disable the install button
     install_button.config(state=tk.DISABLED)
 
-    # A. Run Package Installer Setup files
-    ###############################################
+    # # A. Run Package Installer Setup files
+    # ###############################################
+    text_widget.insert(tk.END, "Starting Installation Process.\n")
     install_pkgs(packages, text_widget)
 
     # B. Create Printers and set Settings
@@ -28,11 +33,12 @@ def run_installation(text_widget, install_button):
 
     # D. Copy/Set Presets
     username = os.popen('whoami').read().strip()
-    copy_files(to_absolute("pkgs/Presets"), f"/Users/{username}/Library/Preferences")
+    copy_files(to_absolute("../pkgs/Presets"), f"/Users/{username}/Library/Preferences")
     text_widget.insert(tk.END, "Copied presets successfully.\n")
+    text_widget.insert(tk.END, "Installation complete.\n")
 
     # Change the button to quit
-    install_button.config(text="Quit", state=tk.NORMAL, command=main_window.quit)
+    change_button_to_quit(install_button)
 
 
 def start_installation_with_thread(text_widget, install_button):

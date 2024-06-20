@@ -1,10 +1,5 @@
 import os
-from Tools.tools import find_base_dir
-
-
-def to_absolute(relative_path):
-    return os.path.abspath(os.path.join(find_base_dir(), relative_path))
-
+from Tools.tools import to_absolute
 
 packages = [
     (to_absolute('../pkgs/Ysoft/Ysoft.pkg'), 'Ysoft'),
