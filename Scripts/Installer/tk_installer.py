@@ -1,6 +1,7 @@
 import os
 import shutil
 import tkinter as tk
+
 import subprocess
 
 
@@ -31,6 +32,7 @@ def install_pkgs(pkgs, text_widget):
 
     text_widget.insert(tk.END, f"\nDone Coping files.\n")
     text_widget.insert(tk.END, "\nWaiting for authentication...\n")
+    text_widget.insert(tk.END, "\nThis Might take up to 10 minutes, Please wait\n")
 
     full_applescript = f"osascript -e '{applescript_commands}'"
     result = os.system(full_applescript)
@@ -41,7 +43,7 @@ def install_pkgs(pkgs, text_widget):
         text_widget.insert(tk.END, f"Installation failed.\n")
         exit()
 
-#   Remove tmps
+#   Remove temp file(s)
     for tmp in tmp_paths:
 
         if os.path.exists(tmp):
