@@ -8,9 +8,10 @@ username = os.getenv('USER')
 
 
 def copy_files(source_folder, destination_folder):
-    list_of_files_with_full_paths = []
 
+    list_of_files_with_full_paths = []
     files = os.listdir(source_folder)
+
     if not files:
         print("No files found in the source folder.")
         return

@@ -10,7 +10,7 @@ def check_file_exists(pkg_path):
     return os.path.isfile(pkg_path)
 
 
-def install_pkgs(pkgs, text_widget):
+def install_pkgs(pkgs, text_widget, event):
     """Install the specified packages using AppleScript for administrative privileges."""
     applescript_commands = ''
     tmp_paths = []
@@ -28,12 +28,14 @@ def install_pkgs(pkgs, text_widget):
             text_widget.insert(tk.END, f"Failed to copy {pkg_path} to {tmp_pkg_path}: {e}\n")
             continue
 
-        applescript_commands += f'do shell script "/usr/sbin/installer -verbose -pkg {tmp_pkg_path} -target /" with administrator privileges\n'
+        applescript_commands += (f'do shell script "/usr/sbin/installer -verbose -pkg {tmp_pkg_path} '
+                                 f'-target /" with administrator privileges\n')
 
     text_widget.insert(tk.END, f"\nDone Coping files.\n")
     text_widget.insert(tk.END, "\nWaiting for authentication...\n")
     text_widget.insert(tk.END, "\nThis Might take up to 10 minutes, Please wait\n")
 
+    #  full_applescript = f"osascript -e {shlex.quote(applescript_commands)}"
     full_applescript = f"osascript -e '{applescript_commands}'"
     result = os.system(full_applescript)
 
@@ -49,4 +51,7 @@ def install_pkgs(pkgs, text_widget):
         if os.path.exists(tmp):
             os.remove(tmp)
             text_widget.insert(tk.END, f"Cleaned up temp file.\n")
+
+#   Signal Event Done, all packages have been installed
+    event.set()
 

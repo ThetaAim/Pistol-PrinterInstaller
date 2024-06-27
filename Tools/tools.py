@@ -2,8 +2,15 @@ import os
 import sys
 
 
-def disable_event():
-    pass
+# def on_closing():
+#     if install_thread is not None and install_thread.is_alive():
+#         messagebox.showinfo("Wait", "Installation is still running. Please wait until it finishes.")
+#     else:
+#         main_window.destroy()
+
+
+def change_button_to_quit(install_button):
+    install_button.config(text="Quit", state=tk.NORMAL, command=main_window.quit)
 
 
 def to_absolute(relative_path):
