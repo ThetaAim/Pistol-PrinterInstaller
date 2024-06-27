@@ -1,6 +1,7 @@
 Intel:
 
 # for one file
+pip install pyinstaller
 arch -x86_64 /usr/local/bin/python3 -m venv venv_intel
 source venv_intel/bin/activate
 arch -x86_64 pyinstaller main.spec --distpath dist_intel
@@ -15,8 +16,17 @@ sudo spctl --master-disable
 sudo spctl --master-enable
 
 #For ARM silicon apple:
+pip install pyinstaller
 pyinstaller main.spec --distpath dist_arm 
 
+#Arm uninstaller (partial)
+ pyinstaller uninstaller.spec --distpath dist_arm_uninstaller
+
+#Intel Uninstaller (partail)
+pip install pyinstaller
+arch -x86_64 /usr/local/bin/python3 -m venv venv_intel
+source venv_intel/bin/activate
+arch -x86_64 pyinstaller uninstaller.spec --distpath dist_intel_uninstaller
 
 #for uninstaller
 
