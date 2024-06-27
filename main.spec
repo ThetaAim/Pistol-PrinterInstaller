@@ -8,7 +8,7 @@ a = Analysis(
     pathex=['/Users/administrator/Desktop/Pistol'],
     binaries=[],
     datas=[
-        ('pkgs', 'Resources/pkgs'),  # Include the pkgs directory
+        ('pkgs', 'pkgs'),  # Include the pkgs directory
         ('Scripts/Installer', 'Installer'),  # Include the Installer directory
         ('Scripts/Presets', 'Presets'),  # Include the Presets directory
         ('Scripts/Printers', 'Printers'),  # Include the Printers directory

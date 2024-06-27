@@ -8,11 +8,12 @@ a = Analysis(
     pathex=['/Users/administrator/Desktop/Pistol'],
     binaries=[],
     datas=[
-#        ('pkgs', 'Resources/pkgs'),  # Include the pkgs directory
-        ('Scripts/Installer', 'Installer'),  # Include the Installer directory
-        ('Scripts/Presets', 'Presets'),  # Include the Presets directory
-        ('Scripts/Printers', 'Printers'),  # Include the Printers directory
-        ('Scripts/Uninstaller', 'Uninstaller'),  # Include the Uninstaller directory
+         ('pkgs/Ysoft/uninstall-safeq-client.command', 'pkgs/Ysoft/uninstall-safeq-client.command'),  # Include the uninstall script
+#        ('pkgs', 'pkgs/Ysoft/uninstall-safeq-client.command'),  # Include the pkgs directory
+#        ('Scripts/Installer', 'Installer'),  # Include the Installer directory
+#        ('Scripts/Presets', 'Presets'),  # Include the Presets directory
+#        ('Scripts/Printers', 'Printers'),  # Include the Printers directory
+        ('Scripts/Uninstaller', 'Scripts/Uninstaller'),  # Include the Uninstaller directory
     ],
     hiddenimports=[],
     hookspath=[],
