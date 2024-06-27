@@ -10,3 +10,4 @@ dist/
 __pycache__/
 *.pkg
 *.app
+__init__.py
