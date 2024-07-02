@@ -20,6 +20,6 @@ def find_base_dir():
         base_dir = "../pkgs/"  # Move up one directory
     return base_dir
 
-# Example usage
-base_dir = find_base_dir()  # Call the function to get the base directory
-print("Base Directory:", base_dir)  # Print the result
+# Test Purpose
+# base_dir = find_base_dir()  # Call the function to get the base directory
+# print("Base Directory:", base_dir)  # Print the result

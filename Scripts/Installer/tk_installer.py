@@ -28,7 +28,7 @@ def install_pkgs(pkgs, text_widget, event):
     text_widget.insert(tk.END, "\nThis might take up to 10 minutes, please wait\n")
 
     full_applescript = f"osascript -e '{applescript_commands}'"
-    print(full_applescript)
+
     result = os.system(full_applescript)
 
     if result == 0:

@@ -27,7 +27,7 @@ def copy_files(source_folder, destination_folder):
 
         # Copy valid files from the source folder to the temporary folder
         for source_file in list_of_files_with_full_paths:
-            print(f"SOURCE FILES{source_file}")
+            # print(f"SOURCE FILES{source_file}")
 
             os.chown(source_file, uid, gid)
             print(f"Changed ownership for {source_file} to user {username}.")
