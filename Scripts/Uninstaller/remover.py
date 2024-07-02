@@ -42,14 +42,26 @@ for printer in printers_to_remove:
     remove_printer(printer)
 
 # Run YSoft uninstall script with admin privileges
-Ysoft_Uninstall = "../../pkgs/Ysoft/uninstall-safeq-client.command"
-try:
-    subprocess.run(['sudo', '-S', Ysoft_Uninstall], check=True)
-    print("YSoft uninstallation completed.")
-except subprocess.CalledProcessError as e:
-    print(f"Failed to run the uninstallation script: {e}")
+import subprocess
 
-###
+# Absolute path to the shell script
+# Ysoft_Uninstall = "/Users/administrator/Desktop/Pistol/pkgs/Ysoft/uninstall-safeq-client.command"
+#
+# applescript_commands = (
+#     f'do shell script "bash -c \\"{Ysoft_Uninstall}\\"" with administrator privileges'
+# )
+# # Full AppleScript command
+# full_applescript = f"osascript -e '{applescript_commands}'"
+#
+# # Execute the AppleScript
+# result = os.system(full_applescript)
+#
+# # Check the result and print appropriate messages
+# if result == 0:
+#     print("AppleScript executed successfully.")
+# else:
+#     print(f"Failed to run AppleScript with exit code: {result}")
+
 
 # def uninstall_ysoft():
 #     if os.geteuid() != 0:

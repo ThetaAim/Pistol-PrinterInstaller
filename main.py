@@ -15,7 +15,6 @@ from Tools.tools import to_absolute
 install_thread = None
 install_event = None
 
-
 def on_closing():
     if install_thread is not None and install_thread.is_alive():
         messagebox.showinfo("Wait", "Installation is still running. Please wait until it finishes.")
