@@ -20,8 +20,5 @@ This application ensures that students can print their projects directly from th
 - Asks Administrative privileges for installation
 - Wifi or Eth Connection to Printer's Network
 
-### Steps
 
-1. Download the Pistol application.
-2. Run
    
